@@ -57,8 +57,8 @@ function Page() {
     message !== "The path is expired..." && message !== "Loading...";
 
   return (
-    <div className="p-3">
-      <div className="bg-gray-900 text-white p-4 rounded-lg shadow-lg h-auto relative">
+    <div className="p-3 flex flex-col items-center justify-center">
+      <div className="bg-gray-900 text-white p-4 rounded-lg shadow-lg h-auto w-full lg:w-1/2 xl:w-1/2 relative">
         <div className="justify-between top-2 right-2 flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="bg-red-500 w-3 h-3 rounded-full"></div>
@@ -82,7 +82,7 @@ function Page() {
         </div>
       </div>
       {/* Use shouldRenderParticles to conditionally render particles */}
-      {shouldRenderParticles && <ParticlesBg num={200} type="lines" bg={true} />}
+      {shouldRenderParticles && <ParticlesBg num={200} type="thick" bg={true} />}
     </div>
   );
 }
