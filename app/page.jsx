@@ -57,7 +57,7 @@ export default function Home() {
     
               {/* // GET */}
               <div className="flex-col items-center">
-                <h3 className="font-bold">POST</h3>
+                <h3 className="font-bold text-left">POST</h3>
                 <Terminal
                   message={`curl -X POST "https://copyslate.vercel.app//api/user" -H "Content-Type: application/json" -d '{
                     "message": "your message",
@@ -71,7 +71,7 @@ export default function Home() {
      
               {/* // POST */}
               <div className="flex-col items-center">
-                <h3 className="font-bold">GET</h3>
+                <h3 className="font-bold text-left">GET</h3>
                 <Terminal message={`curl https://copyslate.vercel.app/api/user/{your_path_name}`} />
               </div>
        
