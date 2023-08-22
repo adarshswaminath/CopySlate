@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import axios from "axios";
 import { BiLinkExternal } from "react-icons/bi";
@@ -8,7 +8,7 @@ import { saveAs } from "file-saver";
 function Page() {
   const [path, setPath] = useState("");
   const [textarea, setTextarea] = useState("");
-  const [expireDate,setExpireDate] = useState("")
+  const [expireDate, setExpireDate] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState(null);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -27,7 +27,7 @@ function Page() {
       const data = {
         route: path,
         message: textarea,
-        expireDate: expireDate, 
+        expireDate: expireDate,
       };
 
       try {
@@ -54,14 +54,14 @@ function Page() {
   };
 
   let expireDateList = [
-    {label: "Select Time",duration: 0},
+    { label: "Select Time", duration: 0 },
     { label: "5 minutes", duration: 5 },
-  { label: "10 minutes", duration: 10 }, 
-  { label: "30 minutes", duration: 30 },
-  { label: "1 hour", duration: 60 },
-  {label: "One Day",duration: 24},
-  { label: "One Week", duration: 7},
-  { label: "One Month", duration: 31 },
+    { label: "10 minutes", duration: 10 },
+    { label: "30 minutes", duration: 30 },
+    { label: "1 hour", duration: 60 },
+    { label: "One Day", duration: 24 },
+    { label: "One Week", duration: 7 },
+    { label: "One Month", duration: 31 },
   ];
 
   // download qrcode
@@ -91,80 +91,26 @@ function Page() {
                 stroke="currentColor"
                 className="w-6 h-6"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
             <p className="font-semibold">{submitMessage}</p>
           </div>
         )}
         {/* if form submitted succes diplay qr and hide form */}
-         {isSuccess ? (
-             <div className="flex flex-col justify-center items-center">
-               <QRCode
+        {isSuccess ? (
+          <div className="flex flex-col justify-center items-center">
+            <QRCode
               title={`${window.location.origin}/${path}`}
               value={`${window.location.origin}/${path}`}
               bgColor="#000"
               fgColor="#fff"
               size={256}
-          />
-           <p className="mt-4 text-purple-500 text-center cursor-pointer">
-              <a
-                href={`/${path}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 font-semibold"
-              >
-                View <BiLinkExternal className="inline-block w-4 h-4" />
-              </a>
-            </p>
-          <button
-                className="mt-4 bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring"
-                onClick={downloadQRCode}
-              >
-                Download QR Code
-              </button>
-             </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} className="side-jump space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="path" className="text-gray-300">
-                Path name (e.g, code)
-              </label>
-              <input
-                type="text"
-                name="path"
-                value={path}
-                onChange={(e) => setPath(e.target.value)}
-                className="w-full p-3 border rounded-lg bg-gray-700 text-gray-300 focus:outline-none focus:border-purple-500"
-                placeholder="Path name (e.g., code)"
-              />
-            </div>
-            <div>
-              <label htmlFor="expire" className="text-gray-300">
-                Destroy after
-              </label>
-              <select
-                name="expire"
-                onChange={(e) => setExpireDate(e.target.value)}
-                className="w-full p-3 py-3.5 border rounded-lg bg-gray-700 text-white focus:border-purple-500"
-              >
-                {expireDateList.map((value, id) => (
-                  <option key={id} value={value.duration}>
-                    {value.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <textarea
-            value={textarea}
-            onChange={(e) => setTextarea(e.target.value)}
-            className="w-full p-3 border rounded-lg bg-gray-700 text-gray-300 focus:border-purple-500"
-            rows="5"
-            placeholder="Your message"
-          />
-          {isSuccess && submitMessage && (
+            />
             <p className="mt-4 text-purple-500 text-center cursor-pointer">
               <a
                 href={`/${path}`}
@@ -175,19 +121,76 @@ function Page() {
                 View <BiLinkExternal className="inline-block w-4 h-4" />
               </a>
             </p>
-          )}
-          <div className="flex justify-center">
             <button
-              type="submit"
-              className="bg-purple-500 text-white py-2 px-6 rounded-md hover:bg-purple-600 focus:outline-none focus:ring"
-              disabled={isSubmitting}
+              className="mt-4 bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring"
+              onClick={downloadQRCode}
             >
-              {isSubmitting ? "Creating..." : "Create"}
+              Download QR Code
             </button>
           </div>
-        </form>
+        ) : (
+          <form onSubmit={handleFormSubmit} className="side-jump space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="path" className="text-gray-300">
+                  e.g: code
+                </label>
+                <input
+                  type="text"
+                  name="path"
+                  value={path}
+                  onChange={(e) => setPath(e.target.value)}
+                  className="w-full p-3 border bg-black text-gray-300 focus:outline-none focus:border-purple-500"
+                  placeholder="Path name (e.g., code)"
+                />
+              </div>
+              <div>
+                <label htmlFor="expire" className="text-gray-300">
+                  Destroy after
+                </label>
+                <select
+                  name="expire"
+                  onChange={(e) => setExpireDate(e.target.value)}
+                  className="w-full p-3 py-3.5 border bg-black text-white focus:border-purple-500"
+                >
+                  {expireDateList.map((value, id) => (
+                    <option key={id} value={value.duration}>
+                      {value.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <textarea
+              value={textarea}
+              onChange={(e) => setTextarea(e.target.value)}
+              className="w-full p-3 border  bg-black text-gray-300 focus:border-purple-500"
+              rows="5"
+              placeholder="Your message"
+            />
+            {isSuccess && submitMessage && (
+              <p className="mt-4 text-purple-500 text-center cursor-pointer">
+                <a
+                  href={`/${path}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 font-semibold"
+                >
+                  View <BiLinkExternal className="inline-block w-4 h-4" />
+                </a>
+              </p>
             )}
-        
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="bg-purple-500 text-white py-2 px-6 rounded-md hover:bg-purple-600 focus:outline-none focus:ring"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Creating..." : "Create"}
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
