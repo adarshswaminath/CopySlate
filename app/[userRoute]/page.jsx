@@ -5,6 +5,7 @@ import { FaRegCopy } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import ParticlesBg from "particles-bg";
 import { useRouter } from "next/navigation";
+import copy from "copy-to-clipboard";
 
 
 function formatMessage(message) {
@@ -24,7 +25,7 @@ function Page() {
   const api = "/api/user/" + pathname.substring(1);
 
   const copyToClipboard = useCallback(() => {
-    navigator.clipboard.writeText(message);
+    copy(message);
     alert("Message copied to clipboard");
   }, [message]);
 
