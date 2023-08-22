@@ -22,6 +22,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
+    "react-qr-code": "^2.0.12",
     "react-type-animation": "^3.1.0",
     "reactjs-alert": "^2.2.0",
     "tailwindcss": "3.3.3",

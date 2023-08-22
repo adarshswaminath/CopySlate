@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BiLinkExternal } from "react-icons/bi";
+import QRCode from "react-qr-code";
 
 function Page() {
   const [path, setPath] = useState("");
@@ -14,7 +15,7 @@ function Page() {
   const clearSubmitMessage = () => {
     setSubmitMessage(null);
   };
-
+  // function to post data in db
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(expireDate);
@@ -45,7 +46,7 @@ function Page() {
       }
     }
   };
-
+  // message handler
   const handleSubmissionResult = (message, success) => {
     setSubmitMessage(message);
     setIsSuccess(success);
@@ -67,8 +68,8 @@ function Page() {
       <div className="p-8 rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/2">
         {submitMessage && (
           <div
-            className={`border p-4 rounded-lg mb-4 ${
-              isSuccess ? "bg-green-400 text-white" : "bg-red-400 text-white"
+            className={`shadow-lg shadow-[#8902f5] p-4 rounded-lg mb-4 ${
+              isSuccess ? "bg-[#ca03f2] text-white" : "bg-red-400 text-white"
             }`}
           >
             <button className="mb-2" onClick={clearSubmitMessage}>
@@ -86,8 +87,19 @@ function Page() {
             <p className="font-semibold">{submitMessage}</p>
           </div>
         )}
-
-        <form onSubmit={handleFormSubmit} className="side-jump space-y-4">
+        {/* if form submitted succes diplay qr and hide form */}
+         {isSuccess ? (
+             <div className="flex justify-center">
+               <QRCode
+              title="GeeksForGeeks"
+              value={`${window.location.origin}/${path}`}
+              bgColor="#000"
+              fgColor="#fff"
+              size={256}
+          />
+             </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="side-jump space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="path" className="text-gray-300">
@@ -148,6 +160,8 @@ function Page() {
             </button>
           </div>
         </form>
+            )}
+        
       </div>
     </div>
   );

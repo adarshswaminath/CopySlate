@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import ParticlesBg from "particles-bg";
 import { useRouter } from "next/navigation";
 
+
 function formatMessage(message) {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
 
