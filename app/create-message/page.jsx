@@ -74,7 +74,7 @@ function Page() {
     }
   };
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className=" bg-black flex items-center justify-center">
       <div className="p-8 rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/2">
         {submitMessage && (
           <div
@@ -129,10 +129,12 @@ function Page() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleFormSubmit} className="side-jump space-y-4">
+          <div className="relative group side-jump">
+            <div className="absolute -inset-2 bg-gradient-to-br from-[#ca03f2] to-[#8902f5] blur-sm opacity-75 group-focus:opacity-100 rounded-lg"></div>
+            <form onSubmit={handleFormSubmit} className="relative side-jump space-y-4 bg-black p-4 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="path" className="text-gray-300">
+                <label htmlFor="path" className="text-gray-400">
                   e.g: code
                 </label>
                 <input
@@ -140,18 +142,18 @@ function Page() {
                   name="path"
                   value={path}
                   onChange={(e) => setPath(e.target.value)}
-                  className="w-full p-3 border bg-black text-gray-300 focus:outline-none focus:border-purple-500"
+                  className="w-full p-3 border bg-black text-gray-300 focus:outline-none border-purple-500"
                   placeholder="Path name (e.g., code)"
                 />
               </div>
               <div>
-                <label htmlFor="expire" className="text-gray-300">
+                <label htmlFor="expire" className="text-gray-400">
                   Destroy after
                 </label>
                 <select
                   name="expire"
                   onChange={(e) => setExpireDate(e.target.value)}
-                  className="w-full p-3 py-3.5 border bg-black text-white focus:border-purple-500"
+                  className="w-full  p-3 py-3.5 border bg-black text-gray-300 border-purple-500 rounded-sm"
                 >
                   {expireDateList.map((value, id) => (
                     <option key={id} value={value.duration}>
@@ -164,7 +166,7 @@ function Page() {
             <textarea
               value={textarea}
               onChange={(e) => setTextarea(e.target.value)}
-              className="w-full p-3 border  bg-black text-gray-300 focus:border-purple-500"
+              className="w-full p-3 border  bg-black text-gray-300 border-purple-500"
               rows="5"
               placeholder="Your message"
             />
@@ -190,6 +192,7 @@ function Page() {
               </button>
             </div>
           </form>
+          </div>
         )}
       </div>
     </div>
