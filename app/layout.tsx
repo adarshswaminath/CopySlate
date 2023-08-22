@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'CopySlate',
-  description: 'CopySlate is a modern messaging platform that enables users to craft custom messages, generate short-lived sharing links, and enhance conversations with interactive content. Built with Next.js, Tailwind CSS, MongoDB, Prisma, and TypeScript',
+  description: 'CopySlate is a powerful and user-friendly web application that allows you to quickly share text across internet seamlessly. Built with Next.js, Tailwind CSS, MongoDB, Prisma, and TypeScript',
 }
 
 export default function RootLayout({
