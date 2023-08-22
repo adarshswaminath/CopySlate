@@ -107,6 +107,16 @@ function Page() {
               fgColor="#fff"
               size={256}
           />
+           <p className="mt-4 text-purple-500 text-center cursor-pointer">
+              <a
+                href={`/${path}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 font-semibold"
+              >
+                View <BiLinkExternal className="inline-block w-4 h-4" />
+              </a>
+            </p>
           <button
                 className="mt-4 bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring"
                 onClick={downloadQRCode}
