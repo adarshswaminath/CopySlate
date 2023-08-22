@@ -1,10 +1,20 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react"; // Fixed the import statement for useEffect
+import React, { useEffect, useState, useCallback } from "react";
 import { FaRegCopy } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import ParticlesBg from "particles-bg";
 import { useRouter } from "next/navigation";
+
+function formatMessage(message) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+  const formattedMessage = message.replace(urlRegex, (url) => {
+    return `<a href="${url}" target="_blank className="underline decoration-[#8902f5]">${url}</a>`;
+  });
+
+  return formattedMessage;
+}
 
 function Page() {
   const router = useRouter();
@@ -12,7 +22,6 @@ function Page() {
   const pathname = usePathname();
   const api = "/api/user/" + pathname.substring(1);
 
-  // Memoize the copyToClipboard function to avoid unnecessary re-renders
   const copyToClipboard = useCallback(() => {
     navigator.clipboard.writeText(message);
     alert("Message copied to clipboard");
@@ -43,11 +52,12 @@ function Page() {
       });
   }, []);
 
-  const shouldRenderParticles = message !== "The path is expired..." && message !== "Loading...";
+  const shouldRenderParticles =
+    message !== "The path is expired..." && message !== "Loading...";
 
   return (
     <div className="p-3">
-      <div className="bg-gray-900  text-white p-4 rounded-lg shadow-lg h-auto relative">
+      <div className="bg-gray-900 text-white p-4 rounded-lg shadow-lg h-auto relative">
         <div className="justify-between top-2 right-2 flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="bg-red-500 w-3 h-3 rounded-full"></div>
@@ -63,7 +73,11 @@ function Page() {
           </button>
         </div>
         <div className="flex items-center gap-3 mb-2">
-          <div className="text-white break-all mt-6">{message}</div>
+          {/* Use dangerouslySetInnerHTML to render formatted message */}
+          <div
+            className="text-white break-all mt-6"
+            dangerouslySetInnerHTML={{ __html: formatMessage(message) }}
+          ></div>
         </div>
       </div>
       {/* Use shouldRenderParticles to conditionally render particles */}

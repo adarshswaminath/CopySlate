@@ -68,7 +68,7 @@ function Page() {
         {submitMessage && (
           <div
             className={`border p-4 rounded-lg mb-4 ${
-              isSuccess ? "bg-green-700 text-green-100" : "bg-red-700 text-red-100"
+              isSuccess ? "bg-green-400 text-white" : "bg-red-400 text-white"
             }`}
           >
             <button className="mb-2" onClick={clearSubmitMessage}>
