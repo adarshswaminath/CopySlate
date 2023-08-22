@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BiLinkExternal } from "react-icons/bi";
-import QRCode from "react-qr-code";
+import QRCode from "qrcode.react";
+import { saveAs } from "file-saver";
 
 function Page() {
   const [path, setPath] = useState("");
@@ -63,6 +64,15 @@ function Page() {
   { label: "One Month", duration: 31 },
   ];
 
+  // download qrcode
+  const downloadQRCode = () => {
+    const canvas = document.querySelector("canvas");
+    if (canvas) {
+      canvas.toBlob((blob) => {
+        saveAs(blob, `${path}.png`);
+      });
+    }
+  };
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       <div className="p-8 rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/2">
@@ -89,14 +99,20 @@ function Page() {
         )}
         {/* if form submitted succes diplay qr and hide form */}
          {isSuccess ? (
-             <div className="flex justify-center">
+             <div className="flex flex-col justify-center items-center">
                <QRCode
-              title="GeeksForGeeks"
+              title={`${window.location.origin}/${path}`}
               value={`${window.location.origin}/${path}`}
               bgColor="#000"
               fgColor="#fff"
               size={256}
           />
+          <button
+                className="mt-4 bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 focus:outline-none focus:ring"
+                onClick={downloadQRCode}
+              >
+                Download QR Code
+              </button>
              </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="side-jump space-y-4">
