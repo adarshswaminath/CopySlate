@@ -1,9 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 import { BiLinkExternal } from "react-icons/bi";
 import QRCode from "qrcode.react";
 import { saveAs } from "file-saver";
+import { FaRegCopy } from "react-icons/fa";
+import copy from "copy-to-clipboard";
+
+
 
 function Page() {
   const [path, setPath] = useState("");
@@ -73,6 +77,10 @@ function Page() {
       });
     }
   };
+  const urlCopytoClipBoard = useCallback(() => {
+   copy(`${window.location.origin}/${path}`)
+   alert("Link Copied In Clip Board") 
+  })
   return (
     <div className=" bg-black flex items-center justify-center">
       <div className="p-8 rounded-lg shadow-lg w-full md:w-2/3 lg:w-1/2 xl:w-1/2">
@@ -82,6 +90,7 @@ function Page() {
               isSuccess ? "bg-[#ca03f2] text-white" : "bg-red-400 text-white"
             }`}
           >
+            <div className="flex justify-between">
             <button className="mb-2" onClick={clearSubmitMessage}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +107,8 @@ function Page() {
                 />
               </svg>
             </button>
+            <FaRegCopy onClick={urlCopytoClipBoard}/>
+            </div>
             <p className="font-semibold">{submitMessage}</p>
           </div>
         )}
