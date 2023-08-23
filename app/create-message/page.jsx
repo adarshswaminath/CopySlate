@@ -107,7 +107,7 @@ function Page() {
                 />
               </svg>
             </button>
-            <FaRegCopy onClick={urlCopytoClipBoard}/>
+            <FaRegCopy onClick={urlCopytoClipBoard} className="cursor-pointer"/>
             </div>
             <p className="font-semibold">{submitMessage}</p>
           </div>
