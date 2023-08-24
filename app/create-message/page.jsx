@@ -24,9 +24,15 @@ function Page() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log(expireDate);
-    if (path.trim() === "" || textarea.trim() === "" || expireDate === "") {
-      handleSubmissionResult("Fields cannot be empty.", false);
-    } else {
+    
+    if (path.trim() === "" || textarea.trim() === "" || expireDate === "" ) {
+      handleSubmissionResult("Fields cannot be empty. or ", false);
+    } 
+     else if(path.includes(".")){
+      handleSubmissionResult("Fields cannot conatain any . ", false);
+
+     }
+    else {
       setIsSubmitting(true);
       const data = {
         route: path,
