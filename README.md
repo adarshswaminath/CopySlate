@@ -1,6 +1,6 @@
 # CopySlate
 
-CopySlate is a web application that allows you to share text instantly across interne. It lets you enter data in a URL, making it accessible from anywhere
+CopySlate is a web application that allows you to share text instantly across internet. It lets you enter data in a URL, making it accessible from anywhere
 
 ## Demo
 
