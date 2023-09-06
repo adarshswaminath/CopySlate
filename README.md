@@ -1,6 +1,7 @@
-# CopySlate
+<h1 align="center">CopySlate</h1>
 
-CopySlate is a web application that allows you to share text instantly across internet. It lets you enter data in a URL, making it accessible from anywhere
+<div align="center">
+  CopySlate is a web application that allows you to share text instantly across internet. It lets you enter data in a URL, making it accessible from anywhere
 
 ## Demo
 
@@ -15,3 +16,5 @@ Check out the live demo of CopySlate: [copyslate.vercel.app](https://copyslate.v
 
 ## Contributing
 Contributions are welcome! Feel free to open an issue or submit a pull request.
+
+</div>
